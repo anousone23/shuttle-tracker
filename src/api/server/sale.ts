@@ -85,8 +85,6 @@ export async function getGroupSalesByDate(dateParam: string) {
     shuttlecockCustomerCount.get(shuttlecockId)!.add(customerId);
   }
 
-  console.log(shuttlecockCustomerCount);
-
   for (const sale of data) {
     const customerId = sale.customers.id;
     const customerName = sale.customers.name;
