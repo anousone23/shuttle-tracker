@@ -1,7 +1,6 @@
 import { loginAction } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 
 export default function SignInPage() {
   return (
@@ -27,14 +26,6 @@ export default function SignInPage() {
 
         <div className="w-full flex flex-col gap-y-2">
           <Button className="w-full">Sign In</Button>
-
-          <p className="text-sm">
-            Don&apos;t have an account?
-            <Link href="/sign-up" className="text-sky-500 hover:underline">
-              {" "}
-              Sign up here
-            </Link>
-          </p>
         </div>
       </form>
     </div>
