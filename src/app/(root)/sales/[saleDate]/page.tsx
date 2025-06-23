@@ -30,15 +30,15 @@ export default async function SaleDetailsPage({
 
       {/* summary */}
       <div className="flex flex-col gap-y-4">
-        <p className="font-medium">
+        <p className="font-medium text-sm">
           Date:
           <span className="text-emerald-500 font-bold"> {date}</span>
         </p>
-        <p className="font-medium">
+        <p className="font-medium text-sm">
           Buyers:{" "}
           <span className="text-emerald-500 font-bold">{sales.length}</span>
         </p>
-        <p className="font-medium">
+        <p className="font-medium text-sm">
           Income:{" "}
           <span className="text-emerald-500 font-bold">{totalAmount} Baht</span>
         </p>
@@ -55,8 +55,8 @@ export default async function SaleDetailsPage({
         )}
       </div>
 
-      <div className="flex items-center justify-center">
-        <Button asChild>
+      <div className="flex items-center justify-center mb-8">
+        <Button asChild className="px-12">
           <Link href="/sales/add">Sell</Link>
         </Button>
       </div>

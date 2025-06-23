@@ -172,7 +172,7 @@ export default function AddNewSalePage() {
       {/* action button */}
       <form
         action={action}
-        className="px-4 py-8 flex items-center justify-evenly border-t border-t-secondary-bg"
+        className="px-4 py-8 flex flex-col items-center gap-y-8 border-t border-t-secondary-bg"
       >
         {/* shuttle cock tube selector */}
         <div className="flex flex-col gap-y-4 items-center justify-center">
@@ -227,13 +227,6 @@ export default function AddNewSalePage() {
           </div>
         </div>
 
-        <Input
-          hidden
-          name="selectedCustomers"
-          value={selectedCustomers.map((c) => c.id).join(",")}
-          readOnly
-        />
-
         {/* button */}
         <div className="flex flex-col gap-y-4">
           <Button type="submit" className="px-12">
@@ -242,6 +235,13 @@ export default function AddNewSalePage() {
 
           {state.error && <p className="text-sm text-red-500">{state.error}</p>}
         </div>
+
+        <Input
+          hidden
+          name="selectedCustomers"
+          value={selectedCustomers.map((c) => c.id).join(",")}
+          readOnly
+        />
       </form>
     </div>
   );

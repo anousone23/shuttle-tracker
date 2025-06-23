@@ -12,7 +12,7 @@ export default async function CustomersPage() {
     <div className="w-full h-screen p-4 flex flex-col gap-y-8">
       {/* header */}
       <Header>
-        <p className="font-bold">Customers: {customers.length}</p>
+        <p className="font-bold text-sm">Customers: {customers.length}</p>
       </Header>
 
       {/* customer list */}
@@ -22,9 +22,11 @@ export default async function CustomersPage() {
         ))}
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mb-8">
         <Button asChild>
-          <Link href="/customers/add">Add new customer</Link>
+          <Link href="/customers/add" className="text-xs">
+            Add new customer
+          </Link>
         </Button>
       </div>
     </div>

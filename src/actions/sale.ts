@@ -109,15 +109,27 @@ export async function markSaleAsPaidAction(
 ) {
   const saleId = formData.get("saleId") as string;
 
+  if (!saleId)
+    return {
+      success: false,
+      error: "Sale ID is required",
+    };
+
   const supabase = await createClient();
   const userId = (await supabase.auth.getUser()).data.user?.id;
+
+  if (!userId)
+    return {
+      success: false,
+      error: "Unauthorized, user is not logged in",
+    };
 
   // get sale
   const { data: sale, error: saleError } = await supabase
     .from("sales")
     .select("*")
     .eq("id", saleId)
-    .maybeSingle();
+    .single();
 
   if (saleError) return { success: false, error: saleError.message };
 
@@ -136,7 +148,7 @@ export async function markSaleAsPaidAction(
 
   if (updateError) return { success: false, error: updateError.message };
 
-  revalidatePath("/sales");
+  revalidatePath("/");
 
   return { success: true, error: null };
 }

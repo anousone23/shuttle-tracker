@@ -12,7 +12,7 @@ export default async function InventoryPage() {
   return (
     <div className="w-full h-screen p-4 flex flex-col gap-y-8">
       <Header>
-        <p className="font-bold">
+        <p className="font-bold text-sm">
           Shuttle cock tube: {shuttlecock_tubes.length}
         </p>
       </Header>
@@ -38,8 +38,8 @@ export default async function InventoryPage() {
         )}
       </div>
 
-      <div className="flex items-center justify-center">
-        <Button asChild>
+      <div className="flex items-center justify-center mb-8">
+        <Button asChild className="text-xs">
           <Link href="/inventory/add">Add new tube</Link>
         </Button>
       </div>

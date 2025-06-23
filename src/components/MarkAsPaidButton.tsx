@@ -18,6 +18,10 @@ export default function MarkAsPaidButton({ sale }: { sale: GroupSale }) {
     if (state.success) {
       toast.success("Sale status updated successfully");
     }
+
+    if (state.error) {
+      toast.error(state.error);
+    }
   }, [state]);
 
   return (

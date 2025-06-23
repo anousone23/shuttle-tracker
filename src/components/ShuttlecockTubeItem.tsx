@@ -59,7 +59,7 @@ export default function ShuttlecockTubeItem({
     <div className="bg-secondary-bg border border-border rounded-sm px-4 py-4 flex flex-col gap-y-4">
       <div className="flex items-center justify-between">
         {/* name */}
-        <p className={`${mode === "rename" && "hidden"}`}>
+        <p className={`${mode === "rename" && "hidden"} text-sm`}>
           {shuttlecockTube.name}
         </p>
 
@@ -91,7 +91,7 @@ export default function ShuttlecockTubeItem({
         >
           <Input
             name="name"
-            className="flex-1 bg-secondary-bg border border-border"
+            className="flex-1 bg-secondary-bg border border-border text-sm"
             placeholder="Name"
             defaultValue={shuttlecockTube.name}
           />
@@ -102,12 +102,12 @@ export default function ShuttlecockTubeItem({
           />
 
           <div className="flex items-center gap-x-4">
-            <Button type="submit">
+            <Button type="submit" className="text-xs">
               {renamePending ? <ClipLoader size={12} /> : "Confirm"}
             </Button>
             <Button
               type="button"
-              className="bg-secondary-bg text-white border border-border hover:bg-primary-bg"
+              className="bg-secondary-bg text-white border border-border hover:bg-primary-bg text-xs"
               onClick={() => setMode(null)}
             >
               Cancel
@@ -129,7 +129,7 @@ export default function ShuttlecockTubeItem({
           />
           <Button
             type="submit"
-            className="bg-rose-500 text-white hover:bg-rose-600"
+            className="bg-rose-500 text-white hover:bg-rose-600 text-xs"
           >
             {deletePending ? (
               <ClipLoader size={12} color="#fafafa" />
@@ -139,7 +139,7 @@ export default function ShuttlecockTubeItem({
           </Button>
           <Button
             type="button"
-            className="bg-secondary-bg text-white border border-border hover:bg-primary-bg"
+            className="bg-secondary-bg text-white border border-border hover:bg-primary-bg text-xs"
             onClick={() => setMode(null)}
           >
             Cancel

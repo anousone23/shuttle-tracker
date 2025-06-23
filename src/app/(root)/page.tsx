@@ -12,7 +12,7 @@ export default async function Home() {
 
       <div className="flex-1 flex flex-col items-center justify-center">
         {/* calendar */}
-        <div className="flex-1 flex items-center justify-center w-[80%]">
+        <div className="flex-1 flex items-center justify-center w-[80%] h-80 max-w-[520px]">
           <CustomCalendar />
         </div>
 

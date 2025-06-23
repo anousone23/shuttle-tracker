@@ -58,11 +58,11 @@ export default function CustomerItem({ customer }: { customer: ICustomer }) {
             <Input
               name="name"
               defaultValue={customer.name}
-              className="flex-1 bg-secondary-bg border border-zinc-700"
+              className="flex-1 bg-secondary-bg border border-zinc-700 text-sm"
             />
 
             {renameState.error && (
-              <p className="text-sm text-red-500">{renameState.error}</p>
+              <p className="text-xs text-red-500">{renameState.error}</p>
             )}
           </div>
           <Input hidden name="customerId" defaultValue={customer.id} />
@@ -70,7 +70,7 @@ export default function CustomerItem({ customer }: { customer: ICustomer }) {
           <div className="flex items-center gap-x-4">
             <Button
               type="submit"
-              className="bg-primary-bg text-white hover:bg-zinc-900"
+              className="bg-primary-bg text-white hover:bg-zinc-900 text-xs"
             >
               {renamePending ? (
                 <ClipLoader color="#fafafa" size={18} />
@@ -80,7 +80,7 @@ export default function CustomerItem({ customer }: { customer: ICustomer }) {
             </Button>
             <Button
               type="button"
-              className="bg-secondary-bg text-white border border-border hover:bg-primary-bg"
+              className="bg-secondary-bg text-white border border-border hover:bg-primary-bg text-xs"
               onClick={() => setMode(null)}
             >
               Cancel
@@ -88,7 +88,7 @@ export default function CustomerItem({ customer }: { customer: ICustomer }) {
           </div>
         </form>
       ) : (
-        <p className="font-medium">{customer.name}</p>
+        <p className="font-medium text-sm">{customer.name}</p>
       )}
 
       {mode === "delete" && (
@@ -96,7 +96,7 @@ export default function CustomerItem({ customer }: { customer: ICustomer }) {
           <Input hidden name="customerId" defaultValue={customer.id} />
           <Button
             type="submit"
-            className="bg-rose-500 text-white hover:bg-rose-600"
+            className="bg-rose-500 text-white hover:bg-rose-600 text-xs"
           >
             {deletePending ? (
               <ClipLoader color="#fafafa" size={18} />
@@ -106,7 +106,7 @@ export default function CustomerItem({ customer }: { customer: ICustomer }) {
           </Button>
           <Button
             type="button"
-            className="bg-secondary-bg text-white border border-border hover:bg-primary-bg"
+            className="bg-secondary-bg text-white border border-border hover:bg-primary-bg text-xs"
             onClick={() => setMode(null)}
           >
             Cancel
