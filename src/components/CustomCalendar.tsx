@@ -9,6 +9,7 @@ import {
   getUnpaidDates,
 } from "@/api/client/sale";
 import { useRouter } from "next/navigation";
+import { format } from "date-fns";
 
 export function CustomCalendar() {
   const router = useRouter();
@@ -34,7 +35,8 @@ export function CustomCalendar() {
   }, [month]);
 
   function handleDayClick(day: Date) {
-    router.push(`/sales/${day}`);
+    const formatted = format(day, "yyyy-MM-dd");
+    router.push(`/sales/${formatted}`);
   }
 
   return (
