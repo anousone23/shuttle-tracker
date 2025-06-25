@@ -33,6 +33,10 @@ export function CustomCalendar() {
     fetchData();
   }, [month]);
 
+  function handleDayClick(day: Date) {
+    router.push(`/sales/${day}`);
+  }
+
   return (
     <Calendar
       mode="single"
@@ -41,7 +45,7 @@ export function CustomCalendar() {
       className="rounded-md border shadow-sm w-full"
       captionLayout="dropdown"
       onMonthChange={(month) => setMonth(month)}
-      onDayClick={(date) => router.push(`/sales/${new Date(date)}`)}
+      onDayClick={handleDayClick}
       modifiers={{
         fullyPaidDates: fullyPaidDates,
         partiallyPaidDates: partiallyPaidDates,

@@ -10,14 +10,14 @@ export default async function Home() {
       {/* header */}
       <Header />
 
-      <div className="flex-1 flex flex-col items-center justify-center">
+      <div className="flex-1 flex flex-col items-center justify-center gap-y-8">
         {/* calendar */}
-        <div className="flex-1 flex items-center justify-center w-[80%] h-80 max-w-[520px]">
+        <div className="flex-1 flex items-center justify-center w-full h-80 max-w-[520px]">
           <CustomCalendar />
         </div>
 
         {/* total income */}
-        <div className="mb-20 font-bold text-lg">
+        <div className="mb-20 font-bold text-sm">
           Expected income:{" "}
           <span className="text-emerald-500">{monthlyIncome} Baht</span>
         </div>
