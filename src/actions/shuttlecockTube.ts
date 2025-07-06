@@ -117,7 +117,7 @@ export async function renameShuttlecockTubeAction(
 
   const { error: updateError } = await supabase
     .from("shuttlecock_tubes")
-    .update({ brand: name })
+    .update({ name })
     .eq("id", shuttlecockTube.id);
 
   if (updateError)

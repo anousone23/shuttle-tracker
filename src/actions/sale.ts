@@ -107,13 +107,24 @@ export async function markSaleAsPaidAction(
   prevState: PrevStateType,
   formData: FormData
 ) {
-  const saleId = formData.get("saleId") as string;
+  const shuttlecockIdsData = formData.get("shuttlecockIds") as string;
+  const customerId = formData.get("customerId") as string;
 
-  if (!saleId)
+  if (!shuttlecockIdsData)
     return {
       success: false,
-      error: "Sale ID is required",
+      error: "Shuttle cock IDs is required",
     };
+
+  if (!customerId)
+    return {
+      success: false,
+      error: "Customer ID is required",
+    };
+
+  const shuttlecockIdsArray = shuttlecockIdsData
+    .split(",")
+    .map((id) => id.trim());
 
   const supabase = await createClient();
   const userId = (await supabase.auth.getUser()).data.user?.id;
@@ -124,27 +135,53 @@ export async function markSaleAsPaidAction(
       error: "Unauthorized, user is not logged in",
     };
 
-  // get sale
-  const { data: sale, error: saleError } = await supabase
+  // // get sale
+  const { data: shuttlecocksData, error: shuttlecocksError } = await supabase
+    .from("shuttlecocks")
+    .select("id")
+    .in("id", shuttlecockIdsArray);
+
+  if (shuttlecocksError)
+    return { success: false, error: shuttlecocksError.message };
+
+  const shuttlecockIds = shuttlecocksData.map((shuttlecock) => shuttlecock.id);
+
+  // get all shuttle cock sales
+  const { data: sales, error: salesError } = await supabase
     .from("sales")
     .select("*")
-    .eq("id", saleId)
-    .single();
+    .eq("customer_id", customerId)
+    .in("shuttlecock_id", shuttlecockIds);
 
-  if (saleError) return { success: false, error: saleError.message };
+  if (salesError)
+    return {
+      success: false,
+      error: salesError.message,
+    };
 
-  // check if user is the seller
-  if (sale.seller_id !== userId)
+  const isSeller = sales.some((sale) => sale.seller_id === userId);
+  const isCustomerOrder = sales.some((sale) => sale.customer_id === customerId);
+
+  if (!isSeller)
     return {
       success: false,
       error: "Don't have permission",
     };
 
-  // update sale status
+  if (!isCustomerOrder)
+    return {
+      success: false,
+      error: "This sale is not belong to this customer",
+    };
+
+  // update sales status
+  const saleIds = sales.map((sale) => sale.id);
+
   const { error: updateError } = await supabase
     .from("sales")
     .update({ is_paid: true })
-    .eq("id", saleId);
+    .eq("customer_id", customerId)
+    .in("id", saleIds);
 
   if (updateError) return { success: false, error: updateError.message };
 
